@@ -1,0 +1,41 @@
+[
+	{
+		"id": 1,
+		"nom": "KARROUACH",
+		"prenom": "Ansar",
+		"password": "ansar123",
+		"email": "karrouach.ansar@gmail.com",
+		"age": "20",
+		"role": "etudiant",
+		"tel": "0640449139",
+		"adresse": "riad salam ,Mohemmadia",
+		"filiere": "Lp-TPW",
+		"description": "Lorem ipsum dolor sit amet adipisicing elit. Similique voluptates eaque eius, recusandae et soluta nobis nisi ratione sapiente assumenda consectetur."
+	},
+	{
+		"id": 2,
+		"nom": "PROF",
+		"prenom": "Prof",
+		"password": "prof1234",
+		"email": "prof@gmail.com",
+		"age": "45",
+		"role": "prof",
+		"tel": "0601124545",
+		"adresse": "Prof Prof ,Prof",
+		"filiere": "Informatique",
+		"description": "Lorem ipsum dolor sit amet adipisicing elit. Similique voluptates eaque eius, recusandae et soluta nobis nisi ratione sapiente assumenda consectetur."
+	},
+	{
+		"id": 3,
+		"nom": "ADMIN",
+		"prenom": "Admin",
+		"password": "admin123",
+		"email": "admin@gmail.com",
+		"age": "35",
+		"role": "admin",
+		"tel": "0612121212",
+		"adresse": "Admin admin ,Admin",
+		"filiere": "Admin",
+		"description": "Lorem ipsum dolor sit amet adipisicing elit. Similique voluptates eaque eius, recusandae et soluta nobis nisi ratione sapiente assumenda consectetur."
+	}
+]
