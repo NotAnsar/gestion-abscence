@@ -8,6 +8,8 @@ const Justification = () => {
 	let { id } = useParams();
 	const navigate = useNavigate();
 
+	const [justification, setJustification] = useState('');
+
 	const [abscences, setAbscences] = useState({
 		date_Seance: '',
 		heure_debut: '',
@@ -40,6 +42,17 @@ const Justification = () => {
 	if (abscences === null) {
 		navigate('/etudiant');
 	}
+
+	const handleChange = (e) => {
+		let value = e.target.value;
+		setJustification(value);
+	};
+
+	const formHandler = (e) => {
+		e.preventDefault();
+		console.log(justification);
+	};
+
 	return (
 		<div className={classes.justification}>
 			<h2>Ajouter Justification</h2>
@@ -79,6 +92,7 @@ const Justification = () => {
 			<form
 				id='checkoutForm'
 				className={`${classes.justificationForm} ${formClasses.blueForm}`}
+				onSubmit={formHandler}
 			>
 				{/* <form id='checkoutForm' onSubmit={formHandler}> */}
 				<div className={formClasses.splitForm}>
@@ -138,7 +152,11 @@ const Justification = () => {
 
 				<div>
 					<label htmlFor='email'>Justification</label>
-					<textarea className={formClasses.textarea} name='justification' />
+					<textarea
+						className={formClasses.textarea}
+						name='justification'
+						onChange={handleChange}
+					/>
 				</div>
 
 				<div>

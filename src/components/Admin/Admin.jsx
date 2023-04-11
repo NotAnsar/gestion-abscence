@@ -11,6 +11,9 @@ import Module from './Module';
 import JustificationAbscences from './JustificationAbscences';
 import UpdateUser from './UpdateUser';
 import AddUser from './AddUser';
+import UpdateModule from './UpdateModule';
+import AddModule from './AddModule';
+import Justification from './Justification';
 
 const Admin = () => {
 	return (
@@ -20,10 +23,19 @@ const Admin = () => {
 			<main className={`${classes.wrapper} ${classes.main}`}>
 				<Routes>
 					<Route path='' element={<GestionCompte />} />
-					<Route path='modules' element={<Module />} />
-					<Route path='abscences' element={<JustificationAbscences />} />
-					<Route path='add' element={<AddUser />} />
 					<Route path='update/:id' element={<UpdateUser />} />
+					<Route path='add' element={<AddUser />} />
+
+					<Route path='modules' element={<Module />} />
+					<Route path='modules/update/:id' element={<UpdateModule />} />
+					<Route path='modules/add' element={<AddModule />} />
+
+					<Route path='abscences' element={<JustificationAbscences />} />
+					<Route
+						path='abscences/justification/:id'
+						element={<Justification />}
+					/>
+
 					<Route path='profile' element={<Profil />} />
 
 					<Route path='*' element={<PageNotFound />} />

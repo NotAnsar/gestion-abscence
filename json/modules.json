@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"module": "Réseaux",
+		"idProf": 1,
+		"nomPro": "H.Lazar"
+	},
+	{
+		"id": 2,
+		"module": "php",
+		"idProf": 2,
+		"nomPro": "Z.Jarir"
+	},
+	{
+		"id": 3,
+		"module": "Developement Web",
+		"idProf": 3,
+		"nomPro": "H.Lazar"
+	}
+]

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './Admin.module.scss';
+import url from '../../store/url';
 
 const GestionCompte = () => {
 	const { user } = useSelector((state) => state.auth);
@@ -11,10 +12,11 @@ const GestionCompte = () => {
 	useEffect(() => {
 		async function getusers() {
 			try {
-				const res = await fetch('../../json/users.json', {
+				// const res = await fetch(`${url}/users`, {
+				const res = await fetch(`../../../json/users.json`, {
 					headers: {
-						'Content-Type': 'application/json',
 						Accept: 'application/json',
+						'Content-Type': 'application/json',
 					},
 				});
 
@@ -22,6 +24,7 @@ const GestionCompte = () => {
 
 				setusers(data.filter((u) => u.id !== user.id));
 			} catch (error) {
+				console.log(error);
 				setusers(null);
 			}
 		}

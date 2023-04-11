@@ -167,7 +167,7 @@
 
 		border-radius: 5px;
 
-		font-size: inherit;
+		font-size: 1rem;
 		font-family: inherit;
 		border: none;
 		outline: none;
@@ -184,11 +184,12 @@
 	}
 }
 
-input[type='submit'] {
+input[type='submit'],
+input[type='button'] {
 	box-sizing: border-box;
 	border: 1px solid #dae1e7;
 	border-radius: 5px;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-family: inherit;
 	outline: none;
 	padding: 8px 12px;
@@ -222,10 +223,18 @@ input[type='submit'] {
 }
 
 .btn__red {
-	background-color: #b91c1c !important;
+	background-color: rgb(185, 28, 28) !important;
+	&:focus {
+		border: 1px solid rgb(185 28 28/0.4) !important;
+		box-shadow: 0 0 0 3px rgb(185 28 28 / 25%) !important;
+	}
 }
 .btn__green {
-	background-color: #16a34a !important;
+	background-color: rgb(22, 163, 74) !important;
+	&:focus {
+		border: 1px solid rgb(22 163 74/0.4) !important;
+		box-shadow: 0 0 0 3px rgb(22 163 74 / 25%) !important;
+	}
 }
 
 .justification {
@@ -266,4 +275,34 @@ input[type='submit'] {
 	font-size: 1rem;
 	padding: 0.5rem;
 	// width: 5rem;
+}
+
+.validation_container {
+	margin-top: 2rem;
+	> div {
+		display: grid;
+		gap: 1rem 0;
+		padding: 1rem 0;
+
+		> div {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.5rem;
+			// padding: 1rem 0;
+		}
+	}
+	.split2 {
+		grid-template-columns: 1fr 1fr;
+	}
+	.split3 {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	h3 {
+		font-weight: 500;
+		color: #222;
+	}
+	p {
+		color: rgb(74, 85, 104);
+	}
 }

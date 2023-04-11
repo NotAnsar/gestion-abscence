@@ -13,8 +13,7 @@ export const Login = (email, password) => {
 				// 	body: JSON.stringify({ password, email }),
 				// });
 
-				console.log(email, password);
-				const res = await fetch('../../json/users.json', {
+				const res = await fetch('./../../json/users.json', {
 					headers: {
 						'Content-Type': 'application/json',
 						Accept: 'application/json',
@@ -22,11 +21,12 @@ export const Login = (email, password) => {
 				});
 
 				const data = await res.json();
-				console.log(data);
 
+				console.log(data);
 				const found = data.find(
 					(a) => a.email === email && a.password === password
 				);
+				console.log(found);
 
 				if (found === undefined) throw Error('Wrong username or password.');
 

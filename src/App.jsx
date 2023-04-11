@@ -2,8 +2,6 @@ import { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Admin from './components/Admin/Admin';
-import Abscences from './components/Etudiant/Abscences';
-import Cours from './components/Etudiant/Cours';
 
 import { Etudiant } from './components/Etudiant/Etudiant';
 

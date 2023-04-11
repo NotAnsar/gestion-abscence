@@ -3,6 +3,32 @@ import { Link } from 'react-router-dom';
 import classes from './Admin.module.scss';
 
 const Module = () => {
+	const [modules, setModules] = useState([]);
+
+	function deleteModule(id) {
+		console.log(id);
+		console.log('deleted');
+	}
+
+	useEffect(() => {
+		async function getmodules() {
+			try {
+				const res = await fetch('../../json/modules.json', {
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+				});
+
+				const data = await res.json();
+
+				setModules(data);
+			} catch (error) {
+				setModules(null);
+			}
+		}
+		getmodules();
+	}, []);
 	return (
 		<div className={classes.abscences}>
 			<h1>Gestion des Modules </h1>
@@ -37,56 +63,33 @@ const Module = () => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Programmation Web 2.0</td>
-						<td>5</td>
-						<td>H.Lazar</td>
-						<td>
-							<Link to={`update/`}>
-								<input
-									type='Submit'
-									placeholder='Update'
-									defaultValue='Update'
-								/>
-							</Link>
-						</td>
-						<td>
-							<Link to={`delete/`}>
-								<input
-									className={classes.btn__red}
-									type='Submit'
-									placeholder='Delete'
-									defaultValue='Delete'
-								/>
-							</Link>
-						</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Programmation Web JEE</td>
-						<td>4</td>
-						<td>Z.Jarir</td>
-						<td>
-							<Link to={`update/`}>
-								<input
-									type='Submit'
-									placeholder='Update'
-									defaultValue='Update'
-								/>
-							</Link>
-						</td>
-						<td>
-							<Link to={`delete/`}>
-								<input
-									className={classes.btn__red}
-									type='Submit'
-									placeholder='Delete'
-									defaultValue='Delete'
-								/>
-							</Link>
-						</td>
-					</tr>
+					{modules.map((m) => (
+						<tr key={m.id}>
+							<td>{m.id}</td>
+							<td>{m.module}</td>
+							<td>{m.idProf}</td>
+							<td>{m.nomPro}</td>
+							<td>
+								<Link to={`update/${m.id}`}>
+									<input
+										type='Submit'
+										placeholder='Update'
+										defaultValue='Update'
+									/>
+								</Link>
+							</td>
+							<td onClick={() => deleteModule(m.id)}>
+								<Link>
+									<input
+										className={classes.btn__red}
+										type='Submit'
+										placeholder='Delete'
+										defaultValue='Delete'
+									/>
+								</Link>
+							</td>
+						</tr>
+					))}
 				</tbody>
 			</table>
 		</div>

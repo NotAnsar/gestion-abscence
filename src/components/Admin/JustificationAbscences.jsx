@@ -1,8 +1,33 @@
 import React from 'react';
 import classes from './Admin.module.scss';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const JustificationAbscences = () => {
+	const [abscences, setAbscences] = useState([]);
+
+	console.log(abscences);
+
+	useEffect(() => {
+		async function getmodules() {
+			try {
+				const res = await fetch('../../json/abscences.json', {
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+				});
+
+				const data = await res.json();
+
+				setAbscences(data);
+			} catch (error) {
+				setAbscences(null);
+			}
+		}
+		getmodules();
+	}, []);
 	return (
 		<div className={classes.abscences}>
 			<div className={classes.title_container}>
@@ -27,57 +52,25 @@ const JustificationAbscences = () => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Réseaux</td>
-						<td>Ansar karrouach</td>
-						<td>27 octobre 2022</td>
-						<td>14:00</td>
-						<td>16:00</td>
+					{abscences.map((a) => (
+						<tr key={a.id}>
+							<td>{a.module}</td>
+							<td>{a.module}</td>
+							<td>{a.date_Seance}</td>
+							<td>{a.heure_debut}</td>
+							<td>{a.heure_fin}</td>
 
-						<td>
-							<Link to='justification'>
-								<input
-									type='Submit'
-									placeholder='Voir Justification'
-									defaultValue='Voir Justification'
-								/>
-							</Link>
-						</td>
-					</tr>
-					<tr>
-						<td>Developement Web</td>
-						<td>Ahmed Amine</td>
-						<td>15 Janvier 2023</td>
-						<td>10:00</td>
-						<td>12:00</td>
-
-						<td>
-							<Link to='justification'>
-								<input
-									type='Submit'
-									placeholder='Voir Justification'
-									defaultValue='Voir Justification'
-								/>
-							</Link>
-						</td>
-					</tr>
-					<tr>
-						<td>Réseaux</td>
-						<td>Mohameed Aldls</td>
-						<td>27 octobre 2022</td>
-						<td>14:00</td>
-						<td>16:00</td>
-
-						<td>
-							<Link to='justification'>
-								<input
-									type='Submit'
-									placeholder='Voir Justification'
-									defaultValue='Voir Justification'
-								/>
-							</Link>
-						</td>
-					</tr>
+							<td>
+								<Link to={`justification/${a.id}`}>
+									<input
+										type='Submit'
+										placeholder='Voir Justification'
+										defaultValue='Voir Justification'
+									/>
+								</Link>
+							</td>
+						</tr>
+					))}
 				</tbody>
 			</table>
 			{/* <div className={classes.pagination}>

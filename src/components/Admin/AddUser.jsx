@@ -2,84 +2,121 @@ import React from 'react';
 import classes from './Admin.module.scss';
 
 import formClasses from '../Login/Form.module.scss';
+import { useState } from 'react';
 
 const AddUser = () => {
+	const [user, setUser] = useState({
+		nom: '',
+		prenom: '',
+		age: '',
+		email: '',
+		role: '',
+		tel: '',
+		adresse: '',
+		filiere: '',
+		description: '',
+		password: '',
+	});
+
+	const handleChange = (e) => {
+		let value = e.target.value;
+		let name = e.target.name;
+
+		setUser((prev) => ({ ...prev, [name]: value }));
+	};
+
+	const formHandler = (e) => {
+		e.preventDefault();
+
+		console.log(user);
+	};
 	return (
 		<div className={classes.justification}>
 			<h2>Ajouter Utilisateur</h2>
 
 			<form
-				id='newUser'
+				id='checkoutForm'
 				className={`${classes.justificationForm} ${formClasses.greenForm}`}
+				onSubmit={formHandler}
 			>
-				{/* <form id='checkoutForm' onSubmit={formHandler}> */}
-				<div className={formClasses.splitForm}>
-					<div>
-						<label htmlFor='firstName'>Nom de Module </label>
-						<input
-							type='text'
-							// onChange={handleChange}
-							value='Developement Web'
-							name='module'
-							disabled
-						/>
-					</div>
-					<div>
-						<label htmlFor='lastName'>Prof de Module</label>
-						<input
-							type='text'
-							// onChange={handleChange}
-							value='Hazar Lazar'
-							name='prof'
-							disabled
-						/>
-					</div>
-				</div>
 				<div className={formClasses.splitFormBy3}>
 					<div>
-						<label htmlFor='email'>Date de Seance</label>
-						<input
-							type='text'
-							// onChange={handleChange}
-							value='12 janvier 2023'
-							name='email'
-							disabled
-						/>
+						<label htmlFor='nom'>Nom </label>
+						<input type='text' name='nom' onChange={handleChange} />
 					</div>
 					<div>
-						<label htmlFor='email'>Heure de Debut</label>
-						<input
-							type='text'
-							// onChange={handleChange}
-							value='9:00'
-							name='email'
-							disabled
-						/>
+						<label htmlFor='prenom'>Prenom</label>
+						<input type='text' name='prenom' onChange={handleChange} />
 					</div>
 					<div>
-						<label htmlFor='email'>Heure de Fin</label>
+						<label htmlFor='age'>Age</label>
+						<input type='text' name='age' onChange={handleChange} />
+					</div>
+				</div>
+				<div className={formClasses.splitForm}>
+					<div>
+						<label htmlFor='email'>Email</label>
 						<input
-							type='text'
-							// onChange={handleChange}
-							value='11:00'
+							type='email'
 							name='email'
-							disabled
+							pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+							required
+							onChange={handleChange}
 						/>
+					</div>
+
+					<div>
+						<label htmlFor='password'>password</label>
+						<input type='password' name='password' onChange={handleChange} />
+					</div>
+				</div>
+				<div className={formClasses.splitForm}>
+					<div>
+						<label htmlFor='categorie_id'>role</label>
+						<select
+							name='role'
+							className={formClasses.select}
+							onChange={handleChange}
+						>
+							<option key={0} value={'etudiant'}>
+								etudiant
+							</option>
+							<option key={1} value={'prof'}>
+								prof
+							</option>
+							<option key={2} value={'admin'}>
+								admin
+							</option>
+						</select>
+					</div>
+					<div>
+						<label htmlFor='filiere'>Filiere</label>
+						<input type='text' name='filiere' onChange={handleChange} />
+					</div>
+				</div>
+
+				<div className={formClasses.splitForm}>
+					<div>
+						<label htmlFor='tel'>Tel </label>
+						<input type='text' name='tel' onChange={handleChange} />
+					</div>
+					<div>
+						<label htmlFor='adresse'>Adresse</label>
+						<input type='text' name='adresse' onChange={handleChange} />
 					</div>
 				</div>
 
 				<div>
-					<label htmlFor='email'>Justification</label>
+					<label htmlFor='description'>Description</label>
 					<textarea
 						className={formClasses.textarea}
-						// defaultValue={data.description}
-						// onChange={handleChange}
-						name='justification'
+						name='description'
+						onChange={handleChange}
 					/>
 				</div>
 
 				<div>
-					<input type='Submit' defaultValue='Add' />
+					<input type='Submit' defaultValue='Ajouter Utilisateur' />
 				</div>
 			</form>
 		</div>

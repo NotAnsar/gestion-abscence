@@ -16,13 +16,13 @@ const Abscences = () => {
 				});
 
 				const data = await res.json();
-				console.log(data);
 
 				setAbscences(data);
 			} catch (error) {
 				setAbscences(null);
 			}
 		}
+
 		getAbscences();
 	}, []);
 	return (
