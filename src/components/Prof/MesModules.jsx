@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 
 import classes from './Prof.module.scss';
 import { HiOutlineDocumentText } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 const MesModules = () => {
 	const data = [
 		{ module: 'Développement applications OO' },
@@ -38,16 +39,20 @@ const MesModules = () => {
 							<HiOutlineDocumentText />
 							<h3>{d.module}</h3>
 							<div className={classes.buttonContainer}>
-								<input
-									type='button'
-									defaultValue='Liste Seances'
-									className={classes.btn__black}
-								/>
-								<input
-									type='button'
-									defaultValue='Liste Etudiants'
-									className={classes.btn__primary}
-								/>
+								<Link to={`seances/${i}`}>
+									<input
+										type='button'
+										defaultValue='Liste Seances'
+										className={classes.btn__black}
+									/>
+								</Link>
+								<Link to={`etudiants/${i}`}>
+									<input
+										type='button'
+										defaultValue='Liste Etudiants'
+										className={classes.btn__primary}
+									/>
+								</Link>
 							</div>
 						</div>
 					))}

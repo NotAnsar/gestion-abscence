@@ -1,39 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
+import url from './url';
 
 export const Login = (email, password) => {
 	return async (dispatch) => {
 		async function Login() {
 			try {
-				// const res = await fetch(`${url}/login`, {
-				// 	method: 'POST',
-				// 	headers: {
-				// 		Accept: 'application/json',
-				// 		'Content-Type': 'application/json',
-				// 	},
-				// 	body: JSON.stringify({ password, email }),
-				// });
+				console.log(JSON.stringify({ email, password }));
+				console.log(`${url}/login`);
 
-				const res = await fetch('./../../json/users.json', {
+				const res = await fetch(`${url}/login`, {
+					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 						Accept: 'application/json',
 					},
+					body: JSON.stringify({ email, password }),
 				});
 
-				const data = await res.json();
+				const login = await res.json();
 
-				console.log(data);
-				const found = data.find(
-					(a) => a.email === email && a.password === password
-				);
-				console.log(found);
-
-				if (found === undefined) throw Error('Wrong username or password.');
-
-				// const login = await res.json();
-				// if (login.error) throw new Error(login.error);
-				return { ...found, error: false, loggedIn: true };
+				if (login?.message === 'Utilisateur introuvable ') {
+					throw new Error(login.message);
+				}
+				return { ...login, error: false, loggedIn: true };
 			} catch (error) {
+				console.log(error);
 				return { error: true, loggedIn: false };
 			}
 		}

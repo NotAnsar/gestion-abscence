@@ -5,22 +5,7 @@ import { HiOutlineDocumentText } from 'react-icons/hi';
 const Cours = () => {
 	const data = [
 		{ prof: 'Hajar LAZAR', module: 'Développement applications OO' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
-		{ prof: 'abc', module: 'defc' },
+		{ prof: 'Z.Jarir', module: 'S6 -Programmation Web JEE' },
 	];
 
 	const [n, setN] = useState(false);
@@ -42,13 +27,15 @@ const Cours = () => {
 						</div>
 					))}
 				</div>
-				<div className={classes.btn_container}>
-					<input
-						type='button'
-						defaultValue={`${n ? 'Show less' : 'Tout les cours'}`}
-						onClick={showAll}
-					/>
-				</div>
+				{data.length >= 5 && (
+					<div className={classes.btn_container}>
+						<input
+							type='button'
+							defaultValue={`${n ? 'Show less' : 'Tout les cours'}`}
+							onClick={showAll}
+						/>
+					</div>
+				)}
 			</div>
 		</Fragment>
 	);

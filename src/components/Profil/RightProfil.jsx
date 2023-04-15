@@ -39,25 +39,6 @@ const RightProfil = ({ user }) => {
 					</div>
 				</div>
 			</div>
-			{
-				<div className={`${classes.right} ${classes.right_bottom}`}>
-					<div className={classes.title_container}>
-						<HiOutlineDocumentText /> <span>Cours</span>
-					</div>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-					optio error quos mollitia maiores autem rem numquam nam, debitis amet
-					voluptatem fugiat iure molestiae, suscipit iste voluptates. Earum
-					fugiat, perferendis quos ea libero quae inventore soluta! Maiores
-					culpa nobis aliquam tempora vitae beatae repudiandae molestiae,
-					accusantium optio ex, sed doloremque eaque itaque asperiores debitis
-					aliquid. Nemo reprehenderit unde doloremque, porro maiores, alias
-					rerum tempore corporis aliquid voluptatem voluptatum iure! Modi sunt
-					nobis qui commodi dolorum nam dignissimos, quod error eveniet
-					temporibus officia nisi libero suscipit voluptatem quia esse vitae
-					laudantium consequuntur magnam excepturi in enim est aut! Accusantium,
-					culpa a!
-				</div>
-			}
 		</div>
 	);
 };

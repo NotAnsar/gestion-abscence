@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react';
 import classes from './Etudiant.module.scss';
 
 import formClasses from '../Login/Form.module.scss';
-import { useNavigate, useParams } from 'react-router-dom';
+import { json, useNavigate, useParams } from 'react-router-dom';
+import url from '../../store/url';
+import { useSelector } from 'react-redux';
 const Justification = () => {
 	let { id } = useParams();
 	const navigate = useNavigate();
 
 	const [justification, setJustification] = useState('');
+	const { user } = useSelector((state) => state.auth);
 
 	const [abscences, setAbscences] = useState({
 		date_Seance: '',
@@ -17,12 +20,14 @@ const Justification = () => {
 		id: NaN,
 		module: '',
 		status: '',
+		justification: '',
 	});
 
 	useEffect(() => {
 		async function getAbscences() {
 			try {
-				const res = await fetch('../../../json/abscences.json', {
+				// const res = await fetch('../../../json/abscences.json', {
+				const res = await fetch(`${url}/absencesEtudiants`, {
 					headers: {
 						'Content-Type': 'application/json',
 						Accept: 'application/json',
@@ -31,7 +36,19 @@ const Justification = () => {
 
 				const data = await res.json();
 
-				setAbscences(data.find((a) => a.id === +id));
+				const user = data.find((a) => a.id === +id);
+
+				setAbscences((a) => {
+					return {
+						date_Seance: user.sceance.dateSceance,
+						justification: user.justification,
+						heure_debut: user.sceance.dateDebut.split(' ')[1],
+						heure_fin: user.sceance.dateFin.split(' ')[1],
+						id: user.id,
+						module: user.sceance.cours.name,
+						status: user.status,
+					};
+				});
 			} catch (error) {
 				setAbscences(null);
 			}
@@ -49,8 +66,35 @@ const Justification = () => {
 	};
 
 	const formHandler = (e) => {
-		e.preventDefault();
-		console.log(justification);
+		//localhost:8084/api/v1/absencesEtudiants/4
+		http: e.preventDefault();
+		console.log({
+			justification: justification,
+			status: abscences.status,
+		});
+		async function getAbscences() {
+			try {
+				// const res = await fetch('../../../json/abscences.json', {
+				const res = await fetch(`${url}/absencesEtudiants/${id}`, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+					body: JSON.stringify({
+						justification: justification,
+						status: abscences.status,
+					}),
+				});
+
+				const data = await res.json();
+				console.log(data);
+				navigate('/etudiant');
+			} catch (error) {
+				setAbscences(null);
+			}
+		}
+		getAbscences();
 	};
 
 	return (
@@ -155,6 +199,7 @@ const Justification = () => {
 					<textarea
 						className={formClasses.textarea}
 						name='justification'
+						defaultValue={abscences.justification}
 						onChange={handleChange}
 					/>
 				</div>

@@ -10,6 +10,7 @@ import Profil from '../Profil/Profil';
 import MesModules from './MesModules';
 import ListAbscences from './ListAbscences';
 import Seances from './Seances';
+import ListEtudiants from './ListEtudiants';
 
 const Prof = () => {
 	return (
@@ -20,8 +21,13 @@ const Prof = () => {
 				<Routes>
 					<Route path='profile' element={<Profil />} />
 					<Route path='' element={<MesModules />} />
-					<Route path='list' element={<ListAbscences />} />
+
 					<Route path='seances' element={<Seances />} />
+					<Route path='seances/:id' element={<Seances />} />
+					<Route path='etudiants/:id' element={<ListEtudiants />} />
+
+					<Route path='list' element={<ListAbscences />} />
+
 					{/* <Route path='modules' element={<Module />} /> */}
 					{/* <Route path='abscences' element={<JustificationAbscences />} /> */}
 

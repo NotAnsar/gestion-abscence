@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './Prof.module.scss';
 
-const Seances = () => {
+const ListEtudiants = () => {
 	return (
 		<div className={classes.abscences}>
 			<div className={classes.title_container}>
@@ -33,11 +33,11 @@ const Seances = () => {
 						<td>10h:00</td>
 						<td>12h:00</td>
 						<td>
-							<Link to={`abscences/id`}>
+							<Link to={`seances/${i}`}>
 								<input
 									type='button'
-									defaultValue='Ajouter Abscences'
-									// className={classes.btn__black}
+									defaultValue='Liste Seances'
+									className={classes.btn__black}
 								/>
 							</Link>
 						</td>
@@ -52,4 +52,4 @@ const Seances = () => {
 	);
 };
 
-export default Seances;
+export default ListEtudiants;
